@@ -1,6 +1,4 @@
-package qianfeng.thread;
-
-import org.omg.Messaging.SyncScopeHelper;
+package qianfeng.method;
 
 public class ThreadCreate {
     public static void main(String[] args) {
@@ -12,7 +10,7 @@ public class ThreadCreate {
             @Override
             public void run() {
                 String threadName = Thread.currentThread().getName();
-                for(int i=0;i<3;i++){
+                for(int i=0;i<30;i++){
                     System.out.println("线程" + threadName + " : " + i);
                 }
                 System.out.println("子线程" + threadName + "执行完毕");
@@ -26,8 +24,8 @@ public class ThreadCreate {
 
         //start
         thread1.start();
-        thread2.start();
         thread3.start();
+        thread2.start();
         System.out.println("主线程执行完毕");
     }
 }
@@ -35,8 +33,8 @@ public class ThreadCreate {
 class MyThread extends Thread {
     @Override
     public void run() {
-        String threadName = this.currentThread().getName();
-        for(int i=0; i<3 ; i++){
+        String threadName = currentThread().getName();
+        for(int i=0; i<30 ; i++){
             System.out.println("线程" + threadName + " : " + i);
         }
         System.out.println("子线程" + threadName + "执行完毕");
@@ -47,7 +45,7 @@ class MyThread extends Thread {
 class MyRunable implements Runnable {
     public void run() {
         String threadName = Thread.currentThread().getName();
-        for(int i=0;i<3;i++){
+        for(int i=0;i<30;i++){
             System.out.println("线程" + threadName + " : " + i);
         }
         System.out.println("子线程" + threadName + "执行完毕");
