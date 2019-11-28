@@ -1,17 +1,12 @@
 package qianfeng.sourceConflict;
 
-public class SynchronizedDemo {
+public class SynchronizedFunction {
     private static Integer ticketNum = 100;
 
     public static void main(String[] args) {
         Runnable sell = () -> {
             while(ticketNum > 0){
-                synchronized(SynchronizedDemo.class){
-                    if(ticketNum <= 0){
-                        break;
-                    }
-                    System.out.println("seller " + Thread.currentThread().getName() + " sells a ticket, there are " + --ticketNum + " tickets left." );
-                }
+                sellTickets();
             }
         };
 
@@ -24,5 +19,11 @@ public class SynchronizedDemo {
         t2.start();
         t3.start();
         t4.start();
+    }
+
+    public synchronized static void sellTickets() {
+        if(ticketNum > 0){
+            System.out.println("seller " + Thread.currentThread().getName() + " sells a ticket, there are " + --ticketNum + " tickets left." );
+        }
     }
 }

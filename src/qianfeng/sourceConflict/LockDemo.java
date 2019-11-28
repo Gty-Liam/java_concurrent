@@ -1,17 +1,18 @@
 package qianfeng.sourceConflict;
 
-public class SynchronizedDemo {
+import java.util.concurrent.locks.ReentrantLock;
+
+public class LockDemo {
     private static Integer ticketNum = 100;
 
     public static void main(String[] args) {
+        ReentrantLock reentrantLock = new ReentrantLock();
         Runnable sell = () -> {
             while(ticketNum > 0){
-                synchronized(SynchronizedDemo.class){
-                    if(ticketNum <= 0){
-                        break;
-                    }
+                reentrantLock.lock();
+                if(ticketNum > 0)
                     System.out.println("seller " + Thread.currentThread().getName() + " sells a ticket, there are " + --ticketNum + " tickets left." );
-                }
+                reentrantLock.unlock();
             }
         };
 
