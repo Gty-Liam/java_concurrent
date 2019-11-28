@@ -1,4 +1,4 @@
-package qianfeng.sourceConflict;
+package qianfeng.sourceconflict;
 
 public class DeadLock {
     public static void main(String[] args) {

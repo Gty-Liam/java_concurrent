@@ -1,4 +1,4 @@
-package qianfeng.sourceConflict;
+package qianfeng.sourceconflict;
 
 import java.util.concurrent.locks.ReentrantLock;
 

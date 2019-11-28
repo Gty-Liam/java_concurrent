@@ -1,4 +1,4 @@
-package qianfeng.sourceConflict;
+package qianfeng.sourceconflict;
 
 public class SynchronizedFunction {
     private static Integer ticketNum = 100;
