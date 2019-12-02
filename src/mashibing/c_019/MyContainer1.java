@@ -15,19 +15,28 @@ public class MyContainer1 {
 
     public static void main(String[] args) {
         MyContainer1 container = new MyContainer1();
-        Thread thread = new Thread(() -> {
-            while (container.size() < 5) {
+        Thread listening = new Thread(() -> {
+            while (container.size() != 5) {
                 System.out.println("thread is running  " + container.size());
-
             }
-            System.out.println("thread stop" + container.size());
+            System.out.println("thread stop  " + container.size());
         });
 
-        thread.start();
-        for(int i=0;i<10;i++){
-            container.add();
-            System.out.println("add one Integer.");
-        }
+        Thread adding = new Thread(()->{
+            for(int i=0;i<10;i++){
+                container.add();
+                System.out.println("add one Integer.");
+                if(i == 4){
+                    try {
+                        listening.join();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        listening.start();
+        adding.start();
     }
 }
 
