@@ -3,7 +3,7 @@ package mashibing.c_019;
 import java.util.ArrayList;
 import java.util.List;
 public class MyContainer1 {
-    private volatile List list = new ArrayList();
+    private List list = new ArrayList();
 
     public void add(){
         list.add(new Integer(1));
