@@ -3,8 +3,11 @@ package mashibing.c_019;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 实现方式二  synchronized
+ */
 public class MyContainer2 {
-    private volatile List list = new ArrayList();
+    private List list = new ArrayList();
 
     public void add(){
         list.add(new Integer(1));
@@ -18,7 +21,7 @@ public class MyContainer2 {
         MyContainer2 container = new MyContainer2();
         Thread listening = new Thread(() -> {
             while (container.size() != 5) {
-                System.out.println("thread is running  " + container.size());
+//                System.out.println("thread is running  " + container.size());
             }
             synchronized (container) {
                 System.out.println("thread stop  " + container.size());

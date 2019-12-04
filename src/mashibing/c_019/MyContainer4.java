@@ -1,12 +1,16 @@
 package mashibing.c_019;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 /**
- * 实现方式一  join等待
+ * 实现方法三  CountDownLatch
+ * CountDownLatch不涉及锁，效率比notify高的多
  */
-public class MyContainer1 {
+public class MyContainer4 {
     private List list = new ArrayList();
 
     public void add(){
@@ -18,21 +22,27 @@ public class MyContainer1 {
     }
 
     public static void main(String[] args) {
-        MyContainer1 container = new MyContainer1();
+        CountDownLatch listeningLatch = new CountDownLatch(1);
+        CountDownLatch addingLatch = new CountDownLatch(1);
+        MyContainer4 container = new MyContainer4();
         Thread listening = new Thread(() -> {
-            while (container.size() != 5) {
-//                System.out.println("thread is running  " + container.size());
+            try {
+                listeningLatch.await();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-            System.out.println("thread stop  " + container.size());
+            System.out.println("stop  "  + container.size());
+            addingLatch.countDown();
         });
 
         Thread adding = new Thread(()->{
             for(int i=0;i<10;i++){
                 container.add();
                 System.out.println("add one Integer.");
-                if(i == 4){
+                if(container.size() == 5){
+                    listeningLatch.countDown();
                     try {
-                        listening.join();
+                        addingLatch.await();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
