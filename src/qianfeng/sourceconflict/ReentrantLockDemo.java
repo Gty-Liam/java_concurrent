@@ -2,7 +2,7 @@ package qianfeng.sourceconflict;
 
 import java.util.concurrent.locks.ReentrantLock;
 
-public class LockDemo {
+public class ReentrantLockDemo {
     private static Integer ticketNum = 100;
 
     public static void main(String[] args) {
