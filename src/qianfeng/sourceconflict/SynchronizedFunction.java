@@ -1,5 +1,8 @@
 package qianfeng.sourceconflict;
 
+/**
+ * 学习synchronized卖票
+ */
 public class SynchronizedFunction {
     private static Integer ticketNum = 100;
 

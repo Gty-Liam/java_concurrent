@@ -7,7 +7,7 @@ public class SingletonTest3 {
     public static void main(String[] args) {
         Runnable runnable = ()->{
             for(int i=0;i<20;i++) {
-                System.out.println("获取实例");
+//                System.out.println("获取实例");
                 Singleton3.getInstance();
             }
         };
@@ -31,7 +31,7 @@ public class SingletonTest3 {
 }
 
 class Singleton3 {
-    Singleton3(){
+    private Singleton3(){
         System.out.println("实例化一个Singleton对象");
     }
     static class Inner {
