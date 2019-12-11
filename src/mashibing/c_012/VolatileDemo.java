@@ -28,7 +28,7 @@ public class VolatileDemo {
         Thread thread = new Thread(()->new VolatileDemo().running());
         thread.start();
         try {
-            Thread.currentThread().sleep(1000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
