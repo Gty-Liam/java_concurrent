@@ -39,7 +39,7 @@ public class T06_FutureTask {
             }
         });
         System.out.println(future.isDone());
-        System.out.println(future.isCancelled());
+        System.out.println(future.isCancelled())    ;
         System.out.println(future.get());
         System.out.println(future.isDone());
     }
